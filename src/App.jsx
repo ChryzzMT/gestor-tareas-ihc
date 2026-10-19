@@ -1,28 +1,26 @@
-import { useState } from 'react'
-import Taskcard from './Components/Taskcard' 
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+import { tasks } from './data/tasks';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import TaskFilter from './Components/TaskFilter';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <div className="min-h-screen bg-gray-100">
+            <Header />
 
-  return (
-      <div>
-          <header>
-              <main>
-                  <h1>Lista de Tareas</h1>
-                  <Taskcard
-                      materia="Interacción Hombre Computador"
-                      docente="Ing. Juan Pérez"
-                      fecha="2026-10-15"
-                      estado="Pendiente"
-                  />
-              </main>
-          </header>
-      </div>
-  )
+            <main className="max-w-4xl mx-auto px-6 py-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                    Mis tareas
+                </h2>
+
+                <TaskFilter tasks={tasks} />
+            </main>
+
+            <Footer />
+        </div>
+    );
 }
 
-export default App
+export default App;
