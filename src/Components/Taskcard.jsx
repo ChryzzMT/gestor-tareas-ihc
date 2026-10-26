@@ -1,7 +1,12 @@
-﻿
-import { useState } from 'react';
+﻿import { useState } from 'react';
 
-function Taskcard({ materia, docente, fecha, estado }) {
+// FORMATEO DE FECHAS: '2026-10-26' → '26/10/2026'
+function formatDate(isoDate) {
+    const [year, month, day] = isoDate.split('-')
+    return `${day}/${month}/${year}`
+}
+
+function Taskcard({ materia, docente, tarea, fecha, estado }) {
     const [estadoActual, setEstadoActual] = useState(estado);
 
     function cambiarEstado() {
@@ -15,11 +20,12 @@ function Taskcard({ materia, docente, fecha, estado }) {
     return (
         <div className="bg-white p-5 rounded-lg shadow">
             <h3 className="text-lg font-bold mb-2">
-                 {materia}
+                {materia}
             </h3>
 
             <p>Docente: {docente}</p>
-            <p>Fecha: {fecha}</p>
+            {tarea && <p>Tarea: {tarea}</p>}
+            <p>Fecha: {formatDate(fecha)}</p>
 
             <p className="mt-2">
                 Estado:{' '}
