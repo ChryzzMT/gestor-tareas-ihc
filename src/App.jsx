@@ -14,6 +14,11 @@ function App() {
         setTasks([...taskList, newTask]);
     };
 
+    // Elimina la tarea con el id indicado (se llama solo tras confirmar)
+    const deleteTask = (id) => {
+        setTasks(taskList.filter((task) => task.id !== id));
+    };
+
     return (
         <div className="min-h-screen bg-gray-100">
             <Header />
@@ -26,7 +31,7 @@ function App() {
                     Mis tareas
                 </h2>
 
-                <TaskFilter tasks={taskList} />
+                <TaskFilter tasks={taskList} onDeleteTask={deleteTask} />
             </main>
 
             <Footer />
